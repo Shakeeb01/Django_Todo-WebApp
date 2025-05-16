@@ -1,0 +1,33 @@
+{% include 'navbar.html' %}
+
+
+{% block content %}
+<div class="container my-5">
+  <h2 class=" text-center">All Todo's</h2>
+  <p class="text-center text-danger">Click On The Task To Edit</p>
+  
+  <div class="table-responsive">
+    <table class="table table-bordered  align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Created At</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for todo in todos%}
+        <tr>
+          <td ><a href="{% url 'edit_todo' todo.pk %}" class="text-danger">{{todo.name}}</a></td>
+          <td>{{todo.description}}</td>
+          <td>{{todo.created_at|timesince}}</td>
+          <td><span class="badge bg-success">{{todo.status}}</span></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock  %}
+    
